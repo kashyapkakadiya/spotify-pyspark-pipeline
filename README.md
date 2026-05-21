@@ -1,3 +1,4 @@
+```markdown
 # StreamSight PySpark Pipeline
 
 A PySpark implementation of the StreamSight ETL pipeline — processes the
@@ -14,41 +15,30 @@ fully containerized with Docker.
 
 ## Architecture
 
+```
 CSV File (4,600 records)
-
-↓
-
+     ↓
 [Extract]   spark.read.csv → raw DataFrame
-
-↓
-
+     ↓
 [Transform] normalize columns → deduplicate → cast numerics
-
-→ parse dates → fill nulls → drop invalid rows
-
-↓
-
+            → parse dates → fill nulls → drop invalid rows
+     ↓
 [Analytics] top songs · top artists · yearly trends + YoY growth
-
-↓
-
+     ↓
 [Output]    CSV files → /output/
+```
 
 ## Project Structure
 
+```
 spotify-pyspark/
-
 ├── docker-compose.yml       # Spark container
-
 ├── src/
-
 │   └── pipeline.py          # full PySpark pipeline
-
 ├── data/                    # CSV dataset (git-ignored)
-
 ├── output/                  # results written here (git-ignored)
-
 └── .gitignore
+```
 
 ## Pipeline Stages
 
@@ -95,8 +85,8 @@ for single-file output per analytics table.
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/kashyapkakadiya/streamsight-pyspark-pipeline.git
-cd streamsight-pyspark-pipeline
+git clone https://github.com/kashyapkakadiya/spotify-pyspark-pipeline.git
+cd spotify-pyspark-pipeline
 
 # 2. Add your dataset
 # Download from Kaggle and place at:
@@ -115,39 +105,28 @@ docker-compose down
 
 ## Sample Output
 
+```
 [ANALYTICS] Top 10 Most Streamed Songs:
-
 +------------------------+-------------+---------------+
-
 |track                   |artist       |spotify_streams|
-
 +------------------------+-------------+---------------+
-
 |Blinding Lights         |The Weeknd   |4281468720     |
-
 |Shape of You            |Ed Sheeran   |3909458734     |
-
 |Someone You Loved       |Lewis Capaldi|3427498835     |
-
 ...
 
 [ANALYTICS] Yearly Trends (sample):
-
 +------------+------------+--------------+-------------+--------------+
-
 |release_year|total_tracks|unique_artists|total_streams|yoy_growth_pct|
-
 +------------+------------+--------------+-------------+--------------+
-
 |2023        |1158        |750           |225245837239 |7.56          |
-
 |2022        |693         |491           |209409259280 |10.44         |
-
 |2011        |51          |37            |54241058712  |107.63        |
-
 ...
+```
 
 ## Dataset
 
 Source: [Most Streamed Spotify Songs 2024](https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024)
 Records: 4,600 | Size: 1.05 MB
+```
