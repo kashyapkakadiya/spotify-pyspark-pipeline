@@ -1,4 +1,3 @@
-```markdown
 # StreamSight PySpark Pipeline
 
 A PySpark implementation of the StreamSight ETL pipeline — processes the
@@ -17,23 +16,14 @@ fully containerized with Docker.
 
 ```
 CSV File (4,600 records)
-
      ↓
-     
 [Extract]   spark.read.csv → raw DataFrame
-
      ↓
-     
 [Transform] normalize columns → deduplicate → cast numerics
-
             → parse dates → fill nulls → drop invalid rows
-            
      ↓
-     
 [Analytics] top songs · top artists · yearly trends + YoY growth
-
      ↓
-     
 [Output]    CSV files → /output/
 ```
 
@@ -41,17 +31,11 @@ CSV File (4,600 records)
 
 ```
 spotify-pyspark/
-
 ├── docker-compose.yml       # Spark container
-
 ├── src/
-
 │   └── pipeline.py          # full PySpark pipeline
-
 ├── data/                    # CSV dataset (git-ignored)
-
 ├── output/                  # results written here (git-ignored)
-
 └── .gitignore
 ```
 
@@ -144,4 +128,3 @@ docker-compose down
 
 Source: [Most Streamed Spotify Songs 2024](https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024)
 Records: 4,600 | Size: 1.05 MB
-```
